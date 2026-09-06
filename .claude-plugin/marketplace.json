@@ -1,0 +1,11 @@
+{
+  "name": "craftspace",
+  "owner": { "name": "Craftspace", "url": "https://craftspace.app" },
+  "plugins": [
+    {
+      "name": "craftspace",
+      "source": "./",
+      "description": "Read the company brain before you answer, and write the durable learning back before you stop."
+    }
+  ]
+}

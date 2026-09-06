@@ -1,0 +1,5 @@
+{
+  "name": "craftspace",
+  "description": "Craftspace skills for Codex. Add the craftspace MCP server naming your org to connect the company brain; Codex honors the MCP server's instructions, so the house rules arrive from the endpoint.",
+  "version": "0.1.0"
+}
