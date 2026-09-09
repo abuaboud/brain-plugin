@@ -1,6 +1,10 @@
 {
   "name": "craftspace",
-  "description": "Connects Claude Code to your team's Craftspace company brain and makes sure decisions and learnings actually get written back — a SessionStart hook primes the read-first / write-back rules, a Stop hook nudges you to record a decision or page before a substantive session ends, and the /grill-me skill interviews you to fill a thin Area of the brain.",
+  "version": "1.0.0",
+  "description": "Keeps a project's durable context in two files at the repo root — CONTEXT.md for what things are, ADR.md for why the hard-to-reverse calls were made — and makes the agent read them before it answers and update them when something resolves. Local files only: no server, no account, no network.",
   "homepage": "https://craftspace.app",
+  "repository": "https://github.com/abuaboud/craftspace-plugin",
+  "license": "MIT",
+  "keywords": ["context", "adr", "decision-records", "documentation", "onboarding"],
   "author": { "name": "Craftspace", "url": "https://craftspace.app" }
 }

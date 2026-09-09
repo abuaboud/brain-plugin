@@ -1,6 +1,7 @@
 {
   "name": "craftspace",
-  "description": "Craftspace house rules and skills for Cursor. Ships an always-apply rule so the agent reads context before acting and writes learnings back. Add the craftspace MCP server naming your org to connect the company brain.",
-  "version": "0.1.0",
-  "rules": ["./rules/craftspace.mdc"]
+  "version": "1.0.0",
+  "description": "Ships an always-apply rule so the agent reads CONTEXT.md and ADR.md before acting and updates them when a decision or a durable fact lands. Local files only: no server, no account.",
+  "license": "MIT",
+  "rules": ["./rules/context.mdc"]
 }

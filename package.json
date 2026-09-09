@@ -1,0 +1,12 @@
+{
+  "name": "craftspace-plugin",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Agent plugin: CONTEXT.md and ADR.md, read first and kept current.",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/sync-cursor-rule.mjs",
+    "test": "node hooks/stop.test.mjs && node scripts/sync-cursor-rule.mjs --check"
+  }
+}

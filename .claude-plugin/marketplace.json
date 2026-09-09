@@ -5,7 +5,7 @@
     {
       "name": "craftspace",
       "source": "./",
-      "description": "Read the company brain before you answer, and write the durable learning back before you stop."
+      "description": "Read CONTEXT.md and ADR.md before you answer; update them when a decision or a durable fact lands."
     }
   ]
 }
