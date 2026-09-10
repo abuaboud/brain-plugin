@@ -32,5 +32,9 @@ scaffold is the empty template the format specs forbid.
 - **Hooks must read the root from their stdin payload, not `process.cwd()`.** A hook is not reliably spawned
   in the project directory; `session-start.mjs` silently read the wrong repo until it parsed stdin the way
   `stop.mjs` already did.
+- **A repo that gitignores `CONTEXT.md` silently swallows `brain/knowledge/context.md`.** An unanchored
+  `CONTEXT.md` line matches at any depth, and on a case-insensitive filesystem it matches the lowercase
+  path too — `git add -A` then reports nothing and adds nothing, with no warning. Check `git check-ignore`
+  when a scaffolded page will not stage, and negate it rather than renaming the page.
 - **Both hooks fail open.** Any parse or read error allows the session to continue. A bug here must never be
   able to trap someone mid-session.
