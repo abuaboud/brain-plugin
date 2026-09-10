@@ -4,11 +4,8 @@ A `brain/` folder at the root of your repo, read before your agent answers and u
 
 ```
 brain/knowledge/
-├── index.md          the spine — one line per Area
 ├── context.md        what things ARE: vocabulary, where they live, the traps
-├── memory.md         dated one-liners that have not earned a page yet
-└── decisions/
-    └── 000001-worker-is-the-sandbox.md    WHY the hard-to-reverse calls were made
+└── ADR.md            WHY the hard-to-reverse calls were made, newest first
 ```
 
 Plain markdown, committed to your repo, reviewed in your normal pull request. **No server, no account, no
@@ -30,8 +27,8 @@ install looks like nothing happened, because nothing has.
 1. **`scripts/brain-init.sh` scaffolds the structure** — deterministic, idempotent, and it exits without
    touching anything if `brain/` already exists.
 2. **The agent fills it from the repo** — the recurring vocabulary, the entry points, the decisions the
-   history gives evidence for. It refuses to invent, and leaves `decisions/` nearly empty rather than
-   filling it with guesses.
+   history gives evidence for. It refuses to invent, and leaves `ADR.md` nearly empty rather than filling
+   it with guesses.
 
 Step 2 is the one that matters. An empty template is worse than nothing: it looks maintained and says
 nothing, which is why the script stops at structure and hands over.
@@ -128,10 +125,9 @@ The problem is not that teams have no documentation. It is that the documentatio
 updates is worse than none, because it is confidently wrong. A folder at a fixed path fixes both halves: an
 agent finds it without being told where to look, and files that ride a pull request get reviewed like code.
 
-The split inside it is the useful part. `context.md` is the present tense and gets edited freely.
-`decisions/` is the past tense and is append-only — you supersede a decision, you never rewrite it, because
-the record of what was believed at the time is the whole point. One file per decision rather than one long
-file, so two branches recording two calls do not collide.
+The split inside it is the useful part. `context.md` is the present tense and gets edited freely. `ADR.md`
+is the past tense and is append-only — you supersede an entry, you never rewrite it, because the record of
+what was believed at the time is the whole point.
 
 ## What the plugin adds
 
@@ -195,7 +191,7 @@ brain-plugin/
 ├── brain/                          this plugin's own brain, in the format it ships
 ├── formats/
 │   ├── CONTEXT.md                  format spec for the context page
-│   └── ADR.md                      format spec for one decision file
+│   └── ADR.md                      format spec for the decision record
 ├── skills/init/SKILL.md            /brain:init, and plain English
 ├── skills/grill-me/SKILL.md        /brain:grill-me
 ├── hooks/

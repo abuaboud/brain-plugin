@@ -11,26 +11,7 @@ if [ -e "$brain" ]; then
   exit 0
 fi
 
-mkdir -p "$brain/knowledge/decisions"
-
-cat > "$brain/knowledge/index.md" <<'EOF'
----
-icon: 🧠
----
-
-# Brain
-
-Durable context for this repo. Every folder here is a page, and every page here is a file in the repo, so
-the team reads the same thing whether they open GitHub or the app.
-
-This page is a **spine**: one line per Area, pointing at the page that holds it. Hard-to-reverse calls live
-in `decisions/`, never here.
-
-## Areas
-
-- **context** — the project's own vocabulary, where things live, and the traps
-- **decisions** — every hard-to-reverse call, newest number highest
-EOF
+mkdir -p "$brain/knowledge"
 
 cat > "$brain/knowledge/context.md" <<'EOF'
 # Context
@@ -39,7 +20,7 @@ cat > "$brain/knowledge/context.md" <<'EOF'
 
 ## Vocabulary
 
-<!-- Only terms this project uses in its own particular way. **Term** — what it IS, in a sentence. -->
+<!-- Only terms this project uses in its own particular way. **Term** -- what it IS, in a sentence. -->
 
 ## Key files
 
@@ -50,18 +31,12 @@ cat > "$brain/knowledge/context.md" <<'EOF'
 <!-- A trap that cost real time and will again. Delete this heading if you have none. -->
 EOF
 
-cat > "$brain/knowledge/memory.md" <<'EOF'
-# Memory
-
-Dated one-liners that have not earned their own page yet. Newest first.
-EOF
-
-cat > "$brain/knowledge/decisions/index.md" <<'EOF'
+cat > "$brain/knowledge/ADR.md" <<'EOF'
 # Decisions
 
-One file per decision: `NNNNNN-kebab-title.md`, numbered sequentially, numbers never reused.
+Newest first. Number sequentially; numbers are never reused.
 
-An entry needs all three — **hard to reverse**, **surprising without the context**, and the result of a
+An entry needs all three -- **hard to reverse**, **surprising without the context**, and the result of a
 **real trade-off**. Miss one and it does not go in.
 EOF
 

@@ -16,11 +16,8 @@ Create this structure:
 
 ```
 brain/knowledge/
-├── index.md          the spine — one line per Area
 ├── context.md        vocabulary · key files · gotchas
-├── memory.md         dated one-liners, newest first
-└── decisions/
-    └── 000001-kebab-title.md
+└── ADR.md            decisions, newest first
 ```
 
 **`brain/knowledge/context.md` — what things ARE, now.**
@@ -42,7 +39,7 @@ _Avoid_: "worker" (retired alias)
 ## Gotchas
 
 - **A crashed Hopper keeps its claim for the full lease.** It expires on a timer, not on disconnect,
-  so a dead job reads as running. See decision 000001 before shortening it.
+  so a dead job reads as running. See ADR 0001 before shortening it.
 ```
 
 Only terms this project uses in its own particular way — the ones someone fluent in the stack would still
@@ -50,38 +47,34 @@ be confused by *here*. Define what a thing IS, not what it does. Ten to twenty t
 is a page nobody reads. Key files: directories rather than files, name the entry-point symbol, never line
 numbers, and never a guessed path. Leave `## Gotchas` out entirely unless you found a real one.
 
-**`brain/knowledge/index.md` — the spine.** One line per Area, pointing at the page that holds it. Start
-with `context` and `decisions`, and add an Area only when this repo actually has one.
-
-**`brain/knowledge/decisions/NNNNNN-kebab-title.md` — WHY the hard-to-reverse calls were made.** One file
-per decision, six digits, numbered sequentially, numbers never reused.
+**`brain/knowledge/ADR.md` — WHY the hard-to-reverse calls were made, newest first.**
 
 ```markdown
----
-status: accepted
----
+# Decisions
 
-# Lease expires on a timer, not on disconnect
+## 0001 · Lease expires on a timer, not on disconnect
+`accepted` · 2026-09-10
 
-## Decision
+### Decision
 What was decided, in a sentence or two.
 
-## Context
+### Context
 The situation and the constraint that forced it.
 
-## Why
+### Why
 The reasoning, and the main alternative that was rejected.
 
-## Consequences
+### Consequences
 What this commits the project to, and what to watch for.
 ```
 
-Title each file as the claim itself, so the folder reads as a list of positions. A sentence or two per
+Number sequentially; numbers are never reused. Title each entry as the claim itself, so the file reads as a
+list of positions. A sentence or two per
 section. An entry needs all three: **hard to reverse**, **surprising without the context**, and the result
 of a **real trade-off** — miss one and skip it. Write one only where the repo gives you evidence: a comment
 explaining why, a revert or migration in the history, an existing design doc. **Do not invent decisions or
-reasoning.** A `decisions/` folder with one file, or none at all, is a correct outcome — say so and let the
-next real decision be the first.
+reasoning.** An `ADR.md` with one entry, or none at all, is a correct outcome — say so and let the next
+real decision be the first.
 
 Rules: never write a name, email, handle, customer or account identifier, credential, or home-directory
 path anywhere in `brain/` — write the role, and repo-relative paths. Do not overwrite a `brain/` folder

@@ -2,10 +2,8 @@
 
 This repo keeps its durable context in `brain/` at the root:
 
-- **`brain/knowledge/index.md`** — the spine. One line per Area, pointing at the page that holds it.
 - **`brain/knowledge/context.md`** — what things ARE. The project's own vocabulary, where each lives, the traps.
-- **`brain/knowledge/decisions/`** — WHY hard-to-reverse calls were made. One file per decision, numbered.
-- **`brain/knowledge/memory.md`** — dated one-liners that have not earned their own page yet.
+- **`brain/knowledge/ADR.md`** — WHY hard-to-reverse calls were made. Newest first.
 
 ## Read it before you answer
 
@@ -22,18 +20,16 @@ Not at the end of the session. When the thing happens.
 
 | What happened | Where it goes |
 | --- | --- |
-| A hard-to-reverse call with a real trade-off | a new file in `brain/knowledge/decisions/` |
+| A hard-to-reverse call with a real trade-off | a new entry at the top of `brain/knowledge/ADR.md` |
 | A term this project uses in its own particular way | `brain/knowledge/context.md` |
 | A gotcha that cost real time and will do it again | a bullet under `## Gotchas` in `brain/knowledge/context.md` |
-| A one-off dated status with nothing procedural to teach | one line in `brain/knowledge/memory.md` |
 | Anything else | nowhere. Let it go. |
 
 Read the format before you write: `${CLAUDE_PLUGIN_ROOT}/formats/ADR.md`, `${CLAUDE_PLUGIN_ROOT}/formats/CONTEXT.md`.
 
-Everything in `brain/` is edited in place and rides your normal pull request. Grep before you add: if a page
-already covers the topic, **edit that page**. A second file on the same subject is a duplicate, not an
-update — and the filename is the entry's identity, so a differently-named second file is the classic way to
-create one by accident.
+Everything in `brain/` is edited in place and rides your normal pull request. Grep before you add: if an
+entry already covers the topic, **edit that entry**. A second entry on the same subject is a duplicate, not
+an update.
 
 ## The bar
 

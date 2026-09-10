@@ -4,7 +4,7 @@
 understand a conversation about this codebase before they can be useful in it.
 
 This page says what things **are, now**. It carries no history and no reasoning; the why behind a
-hard-to-reverse call lives in `brain/knowledge/decisions/`.
+hard-to-reverse call lives in `brain/knowledge/ADR.md`.
 
 ## Shape
 
@@ -29,7 +29,7 @@ _Avoid_: "runner" (retired alias)
 ## Gotchas
 
 - **A Worker holds its claim for 30s after the process dies.** The lease expires on a timer, not on
-  disconnect, so a crashed job looks running until then. Do not shorten it without reading decision 000004.
+  disconnect, so a crashed job looks running until then. Do not shorten it without reading ADR 0004.
 ```
 
 ## Rules
@@ -60,12 +60,11 @@ the wrong place.
 A gotcha is a trap that cost real time and will cost it again. It is **never its own file** — it goes as a
 bullet here, so whoever reads about the thing meets the trap in place instead of having to know it exists.
 
-Name the trap in bold, then say what actually happens and what to do instead. If a decision explains why it
-is that way, point at its number.
+Name the trap in bold, then say what actually happens and what to do instead. If an ADR explains why it is
+that way, point at the number.
 
 ## What does not go here
 
-- **Why a call was made** — that is `brain/knowledge/decisions/`.
-- **A dated status with nothing procedural to teach** — one line in `brain/knowledge/memory.md`.
+- **Why a call was made** — that is `brain/knowledge/ADR.md`.
 - **Anything with a person, a customer, a credential, or a home-directory path in it.** Write the role
   instead, or leave it out.

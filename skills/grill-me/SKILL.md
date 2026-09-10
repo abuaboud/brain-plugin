@@ -89,16 +89,15 @@ Read the formats before you write: `${CLAUDE_PLUGIN_ROOT}/formats/CONTEXT.md` an
 
 | What crystallised | Where it goes |
 | --- | --- |
-| A hard-to-reverse call with a real trade-off | a new file in `brain/knowledge/decisions/` |
+| A hard-to-reverse call with a real trade-off | a new entry at the top of `brain/knowledge/ADR.md` |
 | A term the project uses in its own way | a line under `## Vocabulary` in `brain/knowledge/context.md` |
 | Where something lives | a line under `## Key files` in `brain/knowledge/context.md` |
 | A trap that cost someone hours | a bullet under `## Gotchas` in `brain/knowledge/context.md` |
-| A one-off dated status | one line in `brain/knowledge/memory.md` |
 | Anything else | nowhere |
 
 **Write each fact the moment it resolves**, not in a batch at the end, and route it to exactly one place.
-Grep `brain/` before each write so you extend the page that exists rather than adding a second one beside
-it — the filename is the entry's identity, so a differently-named second file is a duplicate.
+Grep `brain/` before each write so you extend the entry that exists rather than adding a second one beside
+it.
 
 ## 5. Before you stop
 

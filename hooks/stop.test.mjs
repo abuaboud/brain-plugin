@@ -11,8 +11,8 @@ const codex = (name, args) => JSON.stringify({ type: 'response_item', payload: {
 const one = (line) => scanTranscript([line])[0]
 
 assert.deepEqual(one(claude('Edit', { file_path: '/repo/brain/knowledge/context.md' })), { mutating: true, context: true })
-assert.deepEqual(one(claude('Write', { file_path: '/repo/brain/knowledge/decisions/000004-x.md' })), { mutating: true, context: true })
-assert.deepEqual(one(claude('Write', { file_path: 'brain/knowledge/memory.md' })), { mutating: true, context: true }, 'repo-relative')
+assert.deepEqual(one(claude('Write', { file_path: '/repo/brain/knowledge/ADR.md' })), { mutating: true, context: true })
+assert.deepEqual(one(claude('Write', { file_path: 'brain/knowledge/context.md' })), { mutating: true, context: true }, 'repo-relative')
 assert.deepEqual(one(codex('apply_patch', '*** Update File: brain/knowledge/context.md')), { mutating: true, context: true })
 assert.deepEqual(one(claude('Edit', { file_path: '/repo/src/x.ts' })), { mutating: true, context: false })
 

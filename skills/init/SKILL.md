@@ -1,6 +1,6 @@
 ---
 name: init
-description: Scaffold brain/ in this repo and fill it from what the code actually shows. Use when someone wants to initialise, set up, bootstrap or turn on the brain / project context for a repo, or asks where brain/knowledge/context.md and the decisions folder come from.
+description: Scaffold brain/ in this repo and fill it from what the code actually shows. Use when someone wants to initialise, set up, bootstrap or turn on the brain / project context for a repo, or asks where brain/knowledge/context.md and brain/knowledge/ADR.md come from.
 ---
 
 # Init
@@ -14,8 +14,8 @@ worse than nothing — it looks maintained and says nothing — so the second st
 sh "${CLAUDE_PLUGIN_ROOT}/scripts/brain-init.sh"
 ```
 
-It creates `brain/knowledge/` with `index.md`, `context.md`, `memory.md` and `decisions/`, prints the tree,
-and exits 0 without touching anything if `brain/` already exists. Run it from the repo root; it resolves the
+It creates `brain/knowledge/` with `context.md` and `ADR.md`, prints the tree, and exits 0 without touching
+anything if `brain/` already exists. Run it from the repo root; it resolves the
 root itself with `git rev-parse` when it can.
 
 If it reports that `brain/` already exists, **do not overwrite what is there.** Read it, tell the user what
@@ -41,19 +41,14 @@ Keep `## Gotchas` only if you found a real one; delete the heading otherwise.
 Aim for something a new teammate reads in two minutes. Ten to twenty terms is a good page. Fifty is a page
 nobody reads.
 
-## 4. Fill `brain/knowledge/index.md`
+## 4. Fill `brain/knowledge/ADR.md`
 
-One line per Area, pointing at the page that holds it. Replace the scaffold's example lines with the Areas
-this repo actually has. `decisions` stays.
-
-## 5. Write decisions, but only real ones
-
-One file per call, `brain/knowledge/decisions/NNNNNN-kebab-title.md`. Only for calls the repo gives you real
-evidence for — a migration in the history, a comment explaining why something is the way it is, an existing
-design doc. Each must be hard to reverse, surprising without the context, and the result of a real trade-off.
+Newest first, numbered sequentially. Only for calls the repo gives you real evidence for — a migration in
+the history, a comment explaining why something is the way it is, an existing design doc. Each must be hard
+to reverse, surprising without the context, and the result of a real trade-off.
 
 **Do not invent decisions or reasoning.** If the repo does not tell you why, the entry does not go in. It is
-completely fine for `decisions/` to end up with one file, or none at all — say so, and let the next real
+completely fine for `ADR.md` to end up with one entry, or none at all — say so, and let the next real
 decision be the first.
 
 ## Rules

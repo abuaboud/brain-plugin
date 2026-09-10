@@ -26,10 +26,10 @@ const BRAIN_PATH = /(?:^|[/\\"'\s])brain[/\\]/
 const NUDGE =
   'Before you finish: this session changed the codebase but wrote nothing to brain/. ' +
   'If a hard-to-reverse call was made here — one that is costly to undo, surprising without the context, ' +
-  'and picked over a real alternative — add brain/knowledge/decisions/<next-number>-<kebab-title>.md. If a ' +
-  'term, a key path, or a gotcha came up that the next person will need, put it in ' +
-  'brain/knowledge/context.md. Read the format first, grep brain/ so you extend an existing page rather ' +
-  'than duplicating it, and write no names, customer identifiers, credentials, or home-directory paths. ' +
+  'and picked over a real alternative — add an entry at the top of brain/knowledge/ADR.md. If a term, a ' +
+  'key path, or a gotcha came up that the next person will need, put it in brain/knowledge/context.md. ' +
+  'Read the format first, grep brain/ so you extend an existing entry rather than duplicating it, and ' +
+  'write no names, customer identifiers, credentials, or home-directory paths. ' +
   'Most sessions record nothing and that is the right outcome — if nothing here clears that bar, say so ' +
   'in one line and stop.'
 
