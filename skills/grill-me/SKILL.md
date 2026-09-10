@@ -1,12 +1,12 @@
 ---
 name: grill-me
-description: Interview the user about a plan or a thin area of the project in batched rounds, each question carrying a recommended answer, then record what lands in CONTEXT.md and ADR.md. Use when stress-testing a plan, pinning down vocabulary, or proposing a new feature.
+description: Interview the user about a plan or a thin area of the project in batched rounds, each question carrying a recommended answer, then record what lands in brain/. Use when stress-testing a plan, pinning down vocabulary, or proposing a new feature.
 ---
 
 # Grill Me
 
 Interview until you and the user share the same understanding of a plan or an area, and write what lands
-into `CONTEXT.md` and `ADR.md` as you go.
+into `brain/` as you go.
 
 Two rules carry the whole skill: **look up every fact yourself**, and **ask the remaining decisions in
 batched rounds**. A session that spends twenty turns asking one thing at a time, half of them answerable by
@@ -16,8 +16,8 @@ grep, has failed even if the plan comes out fine.
 
 Before the first question, in parallel:
 
-- **`CONTEXT.md` and `ADR.md`** — what terms and decisions are already recorded? Those are settled. You
-  confirm them; you do not ask them.
+- **`brain/`** — what terms and decisions are already recorded? Those are settled. You confirm them; you
+  do not ask them.
 - **The code the plan touches** — the files, the entry points, the constraint that makes this hard.
 - **Overlap, if the plan sounds like a new feature** — does something here already do this job? Check the
   vocabulary, directories and types named for the concept, the routes, and any flag that already gates it.
@@ -59,8 +59,9 @@ answer changes what gets built or written. Everything else costs you trust:
   row. Right?"
 - **Never ask "how should X work?"** Name the constraint you found, name the design you would pick, ask them
   to confirm or overrule it.
-- **Never ask what the files already record.** Restate it as settled. If their answer contradicts
-  `CONTEXT.md`, say which line and reconcile to one truth out loud — do not silently overwrite.
+- **Never ask what the brain already records.** Restate it as settled. If their answer contradicts
+  `brain/knowledge/context.md`, say which line and reconcile to one truth out loud — do not silently
+  overwrite.
 - **Never ask a question with no consequence.** If both answers produce the same code and the same file,
   pick one and move on.
 - **Never leave a bad question standing.** "I don't understand" means the question was wrong: make it
@@ -88,14 +89,16 @@ Read the formats before you write: `${CLAUDE_PLUGIN_ROOT}/formats/CONTEXT.md` an
 
 | What crystallised | Where it goes |
 | --- | --- |
-| A hard-to-reverse call with a real trade-off | a new entry at the top of `ADR.md` |
-| A term the project uses in its own way | a line under `## Vocabulary` in `CONTEXT.md` |
-| Where something lives | a line under `## Key files` in `CONTEXT.md` |
-| A trap that cost someone hours | a bullet under `## Gotchas` in `CONTEXT.md` |
+| A hard-to-reverse call with a real trade-off | a new file in `brain/knowledge/decisions/` |
+| A term the project uses in its own way | a line under `## Vocabulary` in `brain/knowledge/context.md` |
+| Where something lives | a line under `## Key files` in `brain/knowledge/context.md` |
+| A trap that cost someone hours | a bullet under `## Gotchas` in `brain/knowledge/context.md` |
+| A one-off dated status | one line in `brain/knowledge/memory.md` |
 | Anything else | nowhere |
 
 **Write each fact the moment it resolves**, not in a batch at the end, and route it to exactly one place.
-Grep before each write so you extend the entry that exists rather than adding a second one beside it.
+Grep `brain/` before each write so you extend the page that exists rather than adding a second one beside
+it — the filename is the entry's identity, so a differently-named second file is a duplicate.
 
 ## 5. Before you stop
 
@@ -111,5 +114,5 @@ Grep before each write so you extend the entry that exists rather than adding a 
 - **No personal or secret data**, ever: no names, emails, handles, customer or account identifiers,
   credentials, or home-directory paths. Write the role — "the on-call engineer", "the reporting customer" —
   and repo-relative paths. If a fact cannot be written without one of those, it does not go in the file.
-- **Most of what gets said in a grilling session does not belong in a file.** Write the few things that will
+- **Most of what gets said in a grilling session does not belong in the brain.** Write the few things that will
   still matter next month and let the rest go.

@@ -1,36 +1,37 @@
 #!/usr/bin/env node
-// Stop hook: nudge once when a session changed the codebase but left CONTEXT.md and ADR.md untouched.
+// Stop hook: nudge once when a session changed the codebase but wrote nothing into brain/.
 //
 // Four ways it stays quiet, and staying quiet is the common case by design. A nudge that fires on every
 // session is a nudge nobody reads:
-//   1. The repo keeps neither file. Nothing to update, so nothing to say.
+//   1. The repo keeps no brain/ folder. Nothing to update, so nothing to say.
 //   2. The session mutated no file. Reading around a codebase is not a reason to write to it.
-//   3. A context file was already edited. The write-back happened.
+//   3. A file under brain/ was already edited. The write-back happened.
 //   4. This stop was itself triggered by a stop hook (`stop_hook_active`) — nudge once, never twice.
 // Any parse or read error allows the stop, so a bug here can never trap a session.
 //
-// PRIVACY: the transcript is read only to collect tool NAMES and to test one filename regex. No transcript
+// PRIVACY: the transcript is read only to collect tool NAMES and to test one path regex. No transcript
 // content is stored, logged, or emitted anywhere — the message below is fixed text.
 import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
-import { contextFiles, projectRoot } from './project.mjs'
+import { hasBrain, projectRoot } from './project.mjs'
 
 // File-mutating tools. Claude Code's names, plus Codex's `apply_patch`.
 const WORK_TOOLS = new Set(['Write', 'Edit', 'MultiEdit', 'NotebookEdit', 'apply_patch'])
 
-// A mutation whose serialized arguments name a context file. Claude Code's `file_path` and Codex's
-// apply_patch body both stringify to contain it. Anchored on both sides so `ADR.md.bak` and `MY_CONTEXT.md`
-// do not read as the real file and silently suppress the nudge.
-const CONTEXT_FILE = /(?<![\w.\-])(?:CONTEXT|ADR)\.md(?![\w.])/
+// A mutation whose serialized arguments name a path inside brain/. Claude Code's `file_path` and Codex's
+// apply_patch body both stringify to contain it. The leading boundary keeps `my-brain/` and `rebrain/` from
+// reading as the real folder and silently suppressing the nudge.
+const BRAIN_PATH = /(?:^|[/\\"'\s])brain[/\\]/
 
 const NUDGE =
-  'Before you finish: this session changed the codebase but left CONTEXT.md and ADR.md untouched. ' +
+  'Before you finish: this session changed the codebase but wrote nothing to brain/. ' +
   'If a hard-to-reverse call was made here — one that is costly to undo, surprising without the context, ' +
-  'and picked over a real alternative — add an entry at the top of ADR.md. If a term, a key path, or a ' +
-  'gotcha came up that the next person will need, put it in CONTEXT.md. Read the format first, grep the ' +
-  'file so you extend an existing entry rather than duplicating it, and write no names, customer ' +
-  'identifiers, credentials, or home-directory paths. Most sessions record nothing and that is the right ' +
-  'outcome — if nothing here clears that bar, say so in one line and stop.'
+  'and picked over a real alternative — add brain/knowledge/decisions/<next-number>-<kebab-title>.md. If a ' +
+  'term, a key path, or a gotcha came up that the next person will need, put it in ' +
+  'brain/knowledge/context.md. Read the format first, grep brain/ so you extend an existing page rather ' +
+  'than duplicating it, and write no names, customer identifiers, credentials, or home-directory paths. ' +
+  'Most sessions record nothing and that is the right outcome — if nothing here clears that bar, say so ' +
+  'in one line and stop.'
 
 // The bare tool name from either transcript dialect: strip a Claude Code `mcp__server__` prefix.
 const bareName = (name) => (typeof name === 'string' ? name.split('__').pop() : '')
@@ -38,12 +39,12 @@ const bareName = (name) => (typeof name === 'string' ? name.split('__').pop() : 
 // One pass over the transcript, in whichever dialect it is.
 //   Claude Code: {message:{role:'assistant',content:[{type:'tool_use',name,input}]}}
 //   Codex:       {type:'response_item',payload:{type:'function_call'|'custom_tool_call',name,arguments}}
-// Returns one entry per tool call: was it a mutation, and did it touch a context file?
+// Returns one entry per tool call: was it a mutation, and did it touch anything under brain/?
 export function scanTranscript(lines) {
   const calls = []
   const add = (name, args) => {
     const mutating = WORK_TOOLS.has(bareName(name))
-    calls.push({ mutating, context: mutating && CONTEXT_FILE.test(args) })
+    calls.push({ mutating, context: mutating && BRAIN_PATH.test(args) })
   }
   for (const line of lines) {
     if (!line.trim()) continue
@@ -73,7 +74,7 @@ export function scanTranscript(lines) {
 // Returns the reason to block, or null to allow.
 export function decide({ stopHookActive, present, calls }) {
   if (stopHookActive) return null
-  if (present.length === 0) return null
+  if (!present) return null
   if (calls.some((call) => call.context)) return null
   if (!calls.some((call) => call.mutating)) return null
   return NUDGE
@@ -98,7 +99,7 @@ function main() {
 
   const reason = decide({
     stopHookActive: input.stop_hook_active === true,
-    present: contextFiles(projectRoot(input)),
+    present: hasBrain(projectRoot(input)),
     calls,
   })
   if (reason === null) return process.exit(0)

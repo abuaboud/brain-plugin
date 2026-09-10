@@ -17,7 +17,7 @@ const OUT = join(root, '.cursor/rules/brain.mdc')
 
 const FRONTMATTER = [
   '---',
-  'description: Read CONTEXT.md and ADR.md before acting; update them when a decision or a durable fact lands.',
+  'description: Read the repo brain/ folder before acting; update it when a decision or a durable fact lands.',
   'alwaysApply: true',
   '---',
   '',

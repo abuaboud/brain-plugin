@@ -1,31 +1,37 @@
 #!/usr/bin/env node
-// SessionStart: hand the agent this project's context rules.
+// SessionStart: hand the agent this project's brain rules.
 //
-// Only in a repo that keeps CONTEXT.md or ADR.md. Everywhere else it prints nothing and exits 0, so
-// installing this plugin costs an unrelated repo zero tokens and zero instructions.
+// Only in a repo that keeps a `brain/` folder, or one whose own settings asked for it. Everywhere else it
+// prints nothing and exits 0, so installing this plugin costs an unrelated repo zero tokens and zero
+// instructions.
 import { readFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { CONTEXT_FILES, contextFiles, projectRoot } from './project.mjs'
+import { hasBrain, projectRoot, repoOptedIn } from './project.mjs'
 
 const pluginRoot = join(dirname(fileURLToPath(import.meta.url)), '..')
 
-function context(found) {
-  const rules = readFileSync(join(pluginRoot, 'RULES.md'), 'utf8').replaceAll('${CLAUDE_PLUGIN_ROOT}', pluginRoot)
-  const missing = CONTEXT_FILES.filter((name) => !found.includes(name))
-  const status =
-    missing.length === 0
-      ? `\nBoth files exist in this repo. Grep them before you answer.\n`
-      : `\nThis repo has ${found.join(' and ')}. There is no ${missing.join(' or ')} yet — create it the` +
-        ` first time there is something real to put in it, never as an empty scaffold.\n`
-  return rules + status
+function rules() {
+  const body = readFileSync(join(pluginRoot, 'RULES.md'), 'utf8').replaceAll('${CLAUDE_PLUGIN_ROOT}', pluginRoot)
+  return `${body}\nThis repo keeps a brain/ folder. Grep it before you answer.\n`
 }
 
-const found = contextFiles(projectRoot())
-if (found.length > 0) {
-  process.stdout.write(
-    JSON.stringify({
-      hookSpecificOutput: { hookEventName: 'SessionStart', additionalContext: context(found) },
-    }),
-  )
-}
+// Nothing scaffolded yet, but the repo asked for this plugin: point at the way to fill it, once.
+const BOOTSTRAP =
+  'This repo enables the brain plugin but has no brain/ folder yet, so there is nothing to read. Offer in ' +
+  'one line to scaffold and fill it from the repo — the `init` skill carries the procedure. Never leave an ' +
+  'empty scaffold behind, and do not raise it again if the user passes.\n'
+
+const emit = (additionalContext) =>
+  process.stdout.write(JSON.stringify({ hookSpecificOutput: { hookEventName: 'SessionStart', additionalContext } }))
+
+// Take the root from the hook payload, the way stop.mjs does. Falling back to process.cwd() reads
+// whatever directory the hook happened to be spawned in, which is not reliably the project.
+let input = {}
+try {
+  input = JSON.parse(readFileSync(0, 'utf8'))
+} catch {}
+
+const root = projectRoot(input)
+if (hasBrain(root)) emit(rules())
+else if (repoOptedIn(root)) emit(BOOTSTRAP)

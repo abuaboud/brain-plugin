@@ -5,7 +5,7 @@
     {
       "name": "brain",
       "source": "./",
-      "description": "Read CONTEXT.md and ADR.md before you answer; update them when a decision or a durable fact lands."
+      "description": "Read the repo's brain/ folder before you answer; update it when a decision or a durable fact lands. Silent until a repo has one \u2014 run /brain:init, or say \"set up the brain here\", to scaffold and fill it from your code."
     }
   ]
 }

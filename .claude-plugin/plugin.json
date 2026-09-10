@@ -1,9 +1,15 @@
 {
   "name": "brain",
   "version": "1.0.0",
-  "description": "Keeps a project's durable context in two files at the repo root — CONTEXT.md for what things are, ADR.md for why the hard-to-reverse calls were made — and makes the agent read them before it answers and update them when something resolves. Local files only: no server, no account, no network.",
+  "description": "Keeps a project's durable context in a brain/ folder at the repo root — context.md for what things are, decisions/ for why the hard-to-reverse calls were made — and makes the agent read it before it answers and update it when something resolves. Local files only: no server, no account, no network.",
   "homepage": "https://github.com/abuaboud/brain-plugin",
   "repository": "https://github.com/abuaboud/brain-plugin",
   "license": "MIT",
-  "keywords": ["context", "adr", "decision-records", "documentation", "onboarding"]
+  "keywords": [
+    "context",
+    "adr",
+    "decision-records",
+    "documentation",
+    "onboarding"
+  ]
 }

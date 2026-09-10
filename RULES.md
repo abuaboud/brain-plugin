@@ -1,42 +1,48 @@
 # Project context
 
-This repo keeps its durable context in two files at the root:
+This repo keeps its durable context in `brain/` at the root:
 
-- **`CONTEXT.md`** — what things ARE. The project's own vocabulary, one line per term, and where each lives in the code.
-- **`ADR.md`** — WHY hard-to-reverse calls were made. Newest first.
+- **`brain/knowledge/index.md`** — the spine. One line per Area, pointing at the page that holds it.
+- **`brain/knowledge/context.md`** — what things ARE. The project's own vocabulary, where each lives, the traps.
+- **`brain/knowledge/decisions/`** — WHY hard-to-reverse calls were made. One file per decision, numbered.
+- **`brain/knowledge/memory.md`** — dated one-liners that have not earned their own page yet.
 
-## Read them before you answer
+## Read it before you answer
 
 Before acting on anything about how this project works — its vocabulary, its structure, its decisions, its
-gotchas — grep `CONTEXT.md` and `ADR.md` first. They are on disk and current to the working tree, so they
-beat inferring from the code and they beat whatever you already assume.
+gotchas — grep `brain/` first. It is on disk and current to the working tree, so it beats inferring from the
+code and it beats whatever you already assume.
 
-If a term is defined in `CONTEXT.md`, use that word. Do not introduce a synonym for something already named.
+If a term is defined in `brain/knowledge/context.md`, use that word. Do not introduce a synonym for
+something already named.
 
-## Update them the moment something resolves
+## Update it the moment something resolves
 
 Not at the end of the session. When the thing happens.
 
 | What happened | Where it goes |
 | --- | --- |
-| A hard-to-reverse call with a real trade-off | a new entry at the top of `ADR.md` |
-| A term this project uses in its own particular way | a line in `CONTEXT.md` |
-| A gotcha that cost real time and will do it again | a bullet under `## Gotchas` in `CONTEXT.md` |
+| A hard-to-reverse call with a real trade-off | a new file in `brain/knowledge/decisions/` |
+| A term this project uses in its own particular way | `brain/knowledge/context.md` |
+| A gotcha that cost real time and will do it again | a bullet under `## Gotchas` in `brain/knowledge/context.md` |
+| A one-off dated status with nothing procedural to teach | one line in `brain/knowledge/memory.md` |
 | Anything else | nowhere. Let it go. |
 
 Read the format before you write: `${CLAUDE_PLUGIN_ROOT}/formats/ADR.md`, `${CLAUDE_PLUGIN_ROOT}/formats/CONTEXT.md`.
 
-Both files are edited in place and ride your normal pull request. Grep before you add: if an entry already
-covers the topic, **edit that entry**. A second entry on the same subject is a duplicate, not an update.
+Everything in `brain/` is edited in place and rides your normal pull request. Grep before you add: if a page
+already covers the topic, **edit that page**. A second file on the same subject is a duplicate, not an
+update — and the filename is the entry's identity, so a differently-named second file is the classic way to
+create one by accident.
 
 ## The bar
 
-**Most sessions record nothing, and that is the correct outcome.** These two files earn their keep by being
-short enough that someone actually reads them. Every entry you add costs every future reader.
+**Most sessions record nothing, and that is the correct outcome.** The brain earns its keep by being short
+enough that someone actually reads it. Every entry you add costs every future reader.
 
 Record something only if it will still be true and still useful next month. Skip: one-off transients, a
-flaky test you already fixed, general programming knowledge, anything a competent reader gets from the code
-in ten seconds, and status updates ("migrated X today").
+flaky test you already fixed, general programming knowledge, and anything a competent reader gets from the
+code in ten seconds.
 
 An ADR needs all three: **hard to reverse**, **surprising without the context**, and the result of a **real
 trade-off**. Miss one and skip it — you will just reverse an easy call, nobody wonders about an unsurprising
@@ -47,8 +53,8 @@ them thinly. One good entry beats four stubs.
 
 ## Never write
 
-Do not put personal or secret data in either file. They are committed, public to everyone with repo access,
-and permanent in the history.
+Do not put personal or secret data anywhere in `brain/`. It is committed, public to everyone with repo
+access, and permanent in the history.
 
 - **No people.** No names, emails, usernames, handles, or phone numbers — not the team's, not a customer's.
   Write the role: "the on-call engineer", "a reviewer", "the reporting customer".
