@@ -22,7 +22,7 @@ Before the first question, in parallel:
 - **Overlap, if the plan sounds like a new feature** — does something here already do this job? Check the
   vocabulary, directories and types named for the concept, the routes, and any flag that already gates it.
 
-Overlap is reported, never skipped. A close match becomes round 1's first question — "`space-health-service`
+Overlap is reported, never skipped. A close match becomes round 1's first question — "`job-metrics-service`
 already computes this. I would extend it rather than add a service. Agreed?" — with the recommendation to
 extend, and you do not design a new feature past an explicit no. Partial overlap gets the same treatment:
 name the shared parts, recommend merge or separate, record the rationale.
@@ -55,8 +55,8 @@ A question earns its place only if the user has to decide it, you could not have
 answer changes what gets built or written. Everything else costs you trust:
 
 - **Never ask for a definition.** Draft it from what they said and what the code does, and put it in the
-  round as a claim to correct: "I would define a Claim as a fact with a shelf life, not any highlighted
-  span. Right?"
+  round as a claim to correct: "I would define a Lease as a time-boxed hold on a job, not a lock on the
+  row. Right?"
 - **Never ask "how should X work?"** Name the constraint you found, name the design you would pick, ask them
   to confirm or overrule it.
 - **Never ask what the files already record.** Restate it as settled. If their answer contradicts

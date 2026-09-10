@@ -1,5 +1,5 @@
 {
-  "name": "craftspace-plugin",
+  "name": "brain-plugin",
   "version": "1.0.0",
   "private": true,
   "description": "Agent plugin: CONTEXT.md and ADR.md, read first and kept current.",

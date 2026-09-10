@@ -68,4 +68,5 @@ If a fact cannot be written without one of these, it does not go in the file.
 
 ---
 
-`formats/ADR.md` and `formats/CONTEXT.md` are in the craftspace plugin directory.
+`formats/ADR.md` and `formats/CONTEXT.md` live in the brain plugin:
+https://github.com/abuaboud/brain-plugin/tree/main/formats

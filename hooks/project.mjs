@@ -4,7 +4,7 @@
 // makes the plugin safe to install at user scope: it says nothing in the repos that never opted in, which
 // is most of them.
 //
-// ponytail: root only, no tree walk. `/craftspace:init` puts both files at the repo root and nowhere else,
+// ponytail: root only, no tree walk. `/brain:init` puts both files at the repo root and nowhere else,
 // so a walk would only find other projects' files nested inside this one.
 import { existsSync } from 'node:fs'
 import { join } from 'node:path'

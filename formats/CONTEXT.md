@@ -18,7 +18,7 @@ One or two sentences: what this project is, for whom.
 **Worker** — a process that claims one job and runs it to completion. One job at a time, always.
 _Avoid_: "runner" (retired alias)
 **Sandbox** — the isolated filesystem a Worker executes in. Created per job, destroyed after.
-**Errand** — one ask, one owner, one deadline. Not a ticket: an errand always ends.
+**Lease** — a Worker's time-boxed hold on a job. Expires on a timer, not when the process dies.
 
 ## Key files
 

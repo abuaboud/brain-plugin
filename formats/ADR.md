@@ -38,7 +38,7 @@ What this commits the project to, and what to watch for.
 
 - **Number sequentially**, one above the highest already in the file. Numbers are never reused.
 - **Title it as the claim itself**, so the file reads as a list of positions: "Worker is the Sandbox",
-  "Pieces resolve lazily", "Postgres over SQLite". Not "Decision about the worker" and not a full sentence.
+  "Migrations run forward only", "Postgres over SQLite". Not "Decision about the worker" and not a full sentence.
 - **Status** is `accepted`, `proposed` while the call is still open, or `superseded by 0011`.
 - **A sentence or two per section.** Four short paragraphs, not four essays. Link out to code or docs rather
   than inlining background.

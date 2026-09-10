@@ -1,10 +1,9 @@
 {
-  "name": "craftspace",
+  "name": "brain",
   "version": "1.0.0",
   "description": "Keeps a project's durable context in two files at the repo root — CONTEXT.md for what things are, ADR.md for why the hard-to-reverse calls were made — and makes the agent read them before it answers and update them when something resolves. Local files only: no server, no account, no network.",
-  "homepage": "https://craftspace.app",
-  "repository": "https://github.com/abuaboud/craftspace-plugin",
+  "homepage": "https://github.com/abuaboud/brain-plugin",
+  "repository": "https://github.com/abuaboud/brain-plugin",
   "license": "MIT",
-  "keywords": ["context", "adr", "decision-records", "documentation", "onboarding"],
-  "author": { "name": "Craftspace", "url": "https://craftspace.app" }
+  "keywords": ["context", "adr", "decision-records", "documentation", "onboarding"]
 }

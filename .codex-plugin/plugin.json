@@ -1,6 +1,24 @@
 {
-  "name": "craftspace",
+  "name": "brain",
   "version": "1.0.0",
   "description": "Ships the grill-me skill and the CONTEXT.md / ADR.md format specs. The two files live at the repo root, so any agent that greps the repo finds them; the hooks that enforce read-first and update-on-resolve are Claude Code only.",
-  "license": "MIT"
+  "author": { "name": "brain-plugin", "url": "https://github.com/abuaboud/brain-plugin" },
+  "homepage": "https://github.com/abuaboud/brain-plugin",
+  "repository": "https://github.com/abuaboud/brain-plugin",
+  "license": "MIT",
+  "keywords": ["context", "adr", "decision-records", "documentation", "onboarding"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Brain",
+    "shortDescription": "CONTEXT.md and ADR.md, read first and kept current.",
+    "longDescription": "Keeps a project's durable context in two files at the repo root: CONTEXT.md for what things are, ADR.md for why the hard-to-reverse calls were made. Plain markdown that rides your normal pull request. No server, no account, no network.",
+    "developerName": "brain-plugin",
+    "category": "Productivity",
+    "capabilities": ["Interactive", "Write"],
+    "websiteURL": "https://github.com/abuaboud/brain-plugin",
+    "defaultPrompt": [
+      "Grill me on this plan, then record what lands.",
+      "What does CONTEXT.md say about this module?"
+    ]
+  }
 }

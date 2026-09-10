@@ -1,7 +1,0 @@
-{
-  "name": "craftspace",
-  "version": "1.0.0",
-  "description": "Ships an always-apply rule so the agent reads CONTEXT.md and ADR.md before acting and updates them when a decision or a durable fact lands. Local files only: no server, no account.",
-  "license": "MIT",
-  "rules": ["./rules/context.mdc"]
-}

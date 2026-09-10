@@ -1,9 +1,9 @@
 {
-  "name": "craftspace",
-  "owner": { "name": "Craftspace", "url": "https://craftspace.app" },
+  "name": "brain",
+  "owner": { "name": "brain-plugin", "url": "https://github.com/abuaboud/brain-plugin" },
   "plugins": [
     {
-      "name": "craftspace",
+      "name": "brain",
       "source": "./",
       "description": "Read CONTEXT.md and ADR.md before you answer; update them when a decision or a durable fact lands."
     }
